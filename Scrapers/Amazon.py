@@ -14,4 +14,4 @@ def amazon_price_and_title():
     title = soup.select_one('#productTitle').text.strip()
     price = soup.select_one('span.a-offscreen').text
 
-    print(title, price)
+print(title, price)
