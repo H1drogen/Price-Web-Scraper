@@ -7,9 +7,9 @@ app = Flask(__name__)
 def hello_world():  # put application's code here
     return 'Hello World!'
 
-@app.route('/Amazon')
-def amazon_scraper():
-    product_url = asyncio.run(run('product name'))
+@app.route('/Amazon/<product_url>')
+def amazon_scraper(product_url):
+    # product_url = asyncio.run(run('product name'))
     product_info = AmazonScraper(product_url)
 
 if __name__ == '__main__':

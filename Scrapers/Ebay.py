@@ -10,10 +10,10 @@ def ebay_title_and_price(product_name):
         'accept-language': 'en-GB,en;q=0.5',
     }
 
-    search_response = requests.get(search_url, headers=headers)
-    search_soup = BeautifulSoup(search_response.text, 'html.parser')
+    response = requests.get(search_url, headers=headers)
+    soup = BeautifulSoup(response.text, 'html.parser')
 
-    product_url = search_soup.find("a", {"class": "s-item__link"})['href']
+    product_url = soup.find("a", {"class": "s-item__link"})['href']
 
     product_response = requests.get(product_url, headers=headers)
     product_soup = BeautifulSoup(product_response.text, 'html.parser')
