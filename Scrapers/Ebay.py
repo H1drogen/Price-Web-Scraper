@@ -12,14 +12,19 @@ def ebay_title_and_price(product_name):
 
     response = requests.get(search_url, headers=headers)
     soup = BeautifulSoup(response.text, 'html.parser')
+    htmlTitles = soup.find_all("div", {"class": "s-item__title"})
+    htmlPrices = soup.find_all("span", {"class": "s-item__price"})
+    # htmlUndiscountedPrice = soup.find_all("span", {"class": "STRIKETHROUGH"})
+    # htmlCondition = soup.find_all("class", {"class": "SECONDARY_INFO"})
+    # htmlShipping = soup.find_all("class", {"class": "s-item__shipping s-item__logisticsCost"})
 
-    product_url = soup.find("a", {"class": "s-item__link"})['href']
+    title = []
+    price = []
 
-    product_response = requests.get(product_url, headers=headers)
-    product_soup = BeautifulSoup(product_response.text, 'html.parser')
-
-    title = product_soup.find("h1", {"class": "it-ttl"}).text.strip()
-    price = product_soup.find("span", {"class": "notranslate"}).text.strip()
+    #collect the first 3 titles and prices
+    for i in range(1, 3):
+        title.append(htmlTitles[i].text)
+        price.append(htmlPrices[i].text)
 
     return title, price
 
