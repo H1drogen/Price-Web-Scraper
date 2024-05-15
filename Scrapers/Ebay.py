@@ -21,7 +21,7 @@ def ebay_title_and_price(product_name):
     title = []
     price = []
 
-    #collect the first 3 titles and prices
+    # collect the first 3 titles and prices
     for i in range(1, 3):
         title.append(htmlTitles[i].text)
         price.append(htmlPrices[i].text)
